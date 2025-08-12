@@ -1,0 +1,292 @@
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Student Success Stories</h2>
+            <p class="section-subtitle">Hear from our graduates who are now winning hackathons worldwide</p>
+        </div>
+        
+        <div class="testimonials-slider">
+            <div class="testimonial-card active">
+                <div class="testimonial-content">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">This course completely transformed my approach to competitive programming. I went from struggling with basic problems to winning my first hackathon within 3 months. The mock competitions were incredibly valuable!</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Alex Chen" class="author-photo">
+                        <div class="author-info">
+                            <h4>Alex Chen</h4>
+                            <p>Software Engineer at Google</p>
+                            <div class="achievement">🏆 Winner - TechCrunch Disrupt 2023</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">The instructors are amazing! They break down complex algorithms in a way that's easy to understand. The peer learning aspect helped me build lasting connections in the tech community.</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" alt="Sarah Johnson" class="author-photo">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Full Stack Developer at Microsoft</p>
+                            <div class="achievement">🥈 2nd Place - NASA Space Apps Challenge</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="quote-icon">"</div>
+                    <p class="testimonial-text">I was a complete beginner when I started. Now I'm confident tackling any coding challenge. The time management techniques alone were worth the entire course fee!</p>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Mike Rodriguez" class="author-photo">
+                        <div class="author-info">
+                            <h4>Mike Rodriguez</h4>
+                            <p>CS Student at Stanford</p>
+                            <div class="achievement">🥉 3rd Place - ACM ICPC Regional</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-controls">
+            <button class="slider-btn prev-btn" onclick="changeSlide(-1)">❮</button>
+            <div class="slider-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+            <button class="slider-btn next-btn" onclick="changeSlide(1)">❯</button>
+        </div>
+        
+        <div class="testimonials-stats">
+            <div class="stat-box">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Successful Graduates</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">4.9/5</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">85%</div>
+                <div class="stat-label">Win Rate Improvement</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Hackathon Wins</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.testimonials-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+}
+
+.testimonials-slider {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    height: 400px;
+}
+
+.testimonial-card {
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.5s ease;
+    background: rgba(255,255,255,0.1);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.testimonial-card.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.quote-icon {
+    font-size: 4rem;
+    color: #FFD700;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.testimonial-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.author-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #FFD700;
+}
+
+.author-info h4 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.author-info p {
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.achievement {
+    background: #FFD700;
+    color: #333;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.slider-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 15px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.1);
+}
+
+.slider-dots {
+    display: flex;
+    gap: 15px;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #FFD700;
+    transform: scale(1.2);
+}
+
+.testimonials-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.stat-box {
+    text-align: center;
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .testimonials-slider {
+        height: auto;
+        min-height: 450px;
+    }
+    
+    .testimonial-card {
+        padding: 30px 20px;
+    }
+    
+    .testimonial-author {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .slider-controls {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+</style>
+
+<script>
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.testimonial-card');
+const dots = document.querySelectorAll('.dot');
+
+function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+}
+
+function changeSlide(direction) {
+    currentSlideIndex += direction;
+    
+    if (currentSlideIndex >= slides.length) {
+        currentSlideIndex = 0;
+    } else if (currentSlideIndex < 0) {
+        currentSlideIndex = slides.length - 1;
+    }
+    
+    showSlide(currentSlideIndex);
+}
+
+function currentSlide(index) {
+    currentSlideIndex = index - 1;
+    showSlide(currentSlideIndex);
+}
+
+// Auto-slide every 5 seconds
+setInterval(() => {
+    changeSlide(1);
+}, 5000);
+</script>

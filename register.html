@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnBridge - Register Your School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Registration Section */
+        .registration-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .form-container {
+            padding: 40px 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fafafa;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 3px;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: normal;
+            font-size: 0.9rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card i {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .benefit-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .section-header {
+                padding: 30px 20px;
+            }
+
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .form-container {
+                padding: 25px 15px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4CAF50;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i> LearnBridge
+            </div>
+            <div class="tagline">Bridging the Education Gap Through Technology</div>
+        </div>
+
+        <!-- Registration Section -->
+        <div class="registration-section">
+            <div class="section-header">
+                <h2><i class="fas fa-school"></i> Register Your School</h2>
+                <p>Join the LearnBridge pilot program and transform education in your community</p>
+            </div>
+
+            <div class="form-container">
+                <form id="registrationForm">
+                    <div class="form-grid">
+                        <!-- School Information -->
+                        <div class="form-group">
+                            <label for="schoolName">School Name <span class="required">*</span></label>
+                            <input type="text" id="schoolName" name="schoolName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="schoolType">School Type <span class="required">*</span></label>
+                            <select id="schoolType" name="schoolType" required>
+                                <option value="">Select School Type</option>
+                                <option value="public">Public Secondary School</option>
+                                <option value="private">Private Secondary School</option>
+                                <option value="community">Community School</option>
+                                <option value="technical">Technical College</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location (LGA) <span class="required">*</span></label>
+                            <input type="text" id="location" name="location" placeholder="Local Government Area" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="studentCount">Total Number of Students <span class="required">*</span></label>
+                            <select id="studentCount" name="studentCount" required>
+                                <option value="">Select Range</option>
+                                <option value="1-100">1 - 100 students</option>
+                                <option value="101-300">101 - 300 students</option>
+                                <option value="301-500">301 - 500 students</option>
+                                <option value="501-1000">501 - 1000 students</option>
+                                <option value="1000+">1000+ students</option>
+                            </select>
+                        </div>
+
+                        <!-- Principal/Administrator Information -->
+                        <div class="form-group">
+                            <label for="principalName">Principal/Head Teacher Name <span class="required">*</span></label>
+                            <input type="text" id="principalName" name="principalName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="principalPhone">Principal's Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="principalPhone" name="principalPhone" placeholder="080XXXXXXXX" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="principalEmail">Principal's Email <span class="required">*</span></label>
+                            <input type="email" id="principalEmail" name="principalEmail" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPerson">Alternative Contact Person</label>
+                            <input type="text" id="contactPerson" name="contactPerson" placeholder="Vice Principal or Administrator">
+                        </div>
+
+                        <!-- Technology Infrastructure -->
+                        <div class="form-group">
+                            <label for="internetAccess">Internet Access <span class="required">*</span></label>
+                            <select id="internetAccess" name="internetAccess" required>
+                                <option value="">Select Option</option>
+                                <option value="reliable">Reliable internet access</option>
+                                <option value="intermittent">Intermittent internet access</option>
+                                <option value="limited">Very limited internet access</option>
+                                <option value="none">No internet access</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="deviceAccess">Student Device Access <span class="required">*</span></label>
+                            <select id="deviceAccess" name="deviceAccess" required>
+                                <option value="">Select Option</option>
+                                <option value="most">Most students have smartphones</option>
+                                <option value="some">Some students have smartphones</option>
+                                <option value="few">Few students have smartphones</option>
+                                <option value="shared">School has shared devices only</option>
+                            </select>
+                        </div>
+
+                        <!-- Challenges and Goals -->
+                        <div class="form-group full-width">
+                            <label for="challenges">Main Educational Challenges (Select all that apply)</label>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                                <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; margin-bottom: 8px;">
+                                    <input type="checkbox" name="challenges" value="low-engagement">
+                                    Low student engagement
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; margin-bottom: 8px;">
+                                    <input type="checkbox" name="challenges" value="high-dropout">
+                                    High dropout rates
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; margin-bottom: 8px;">
+                                    <input type="checkbox" name="challenges" value="poor-performance">
+                                    Poor academic performance
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; margin-bottom: 8px;">
+                                    <input type="checkbox" name="challenges" value="teacher-training">
+                                    Need for teacher training
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; margin-bottom: 8px;">
+                                    <input type="checkbox" name="challenges" value="parent-engagement">
+                                    Limited parent engagement
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; margin-bottom: 8px;">
+                                    <input type="checkbox" name="challenges" value="resources">
+                                    Lack of learning resources
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="expectations">What do you hope to achieve with LearnBridge?</label>
+                            <textarea id="expectations" name="expectations" placeholder="Tell us about your goals and expectations for the program..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Agreement -->
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agreement" name="agreement" required>
+                        <label for="agreement">
+                            I confirm that the information provided is accurate and I agree to participate in the LearnBridge pilot program. I understand that this includes training sessions, regular monitoring, and feedback collection. <span class="required">*</span>
+                        </label>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="newsletter" name="newsletter">
+                        <label for="newsletter">
+                            I would like to receive updates about LearnBridge and other OVL Foundation educational initiatives.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Registration
+                    </button>
+
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>Submitting your registration...</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Benefits Section -->
+        <div class="benefits">
+            <div class="benefit-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Mobile-First Learning</h3>
+                <p>Access educational content anytime, anywhere on smartphones and tablets</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-users"></i>
+                <h3>Community Connection</h3>
+                <p>Connect teachers, students, and parents in a collaborative learning ecosystem</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Progress Tracking</h3>
+                <p>Real-time insights into student performance and attendance patterns</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Curriculum Aligned</h3>
+                <p>Content specifically adapted to Delta State's educational curriculum</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        (function() {
+            // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+            emailjs.init('YOUR_PUBLIC_KEY'); // You'll get this from EmailJS dashboard
+        })();
+
+        // Function to format form data for email
+        function formatEmailContent(formData) {
+            const challenges = [];
+            const checkboxes = document.querySelectorAll('input[name="challenges"]:checked');
+            checkboxes.forEach(cb => challenges.push(cb.value.replace('-', ' ')));
+            
+            return {
+                school_name: formData.get('schoolName'),
+                school_type: formData.get('schoolType'),
+                location: formData.get('location'),
+                student_count: formData.get('studentCount'),
+                principal_name: formData.get('principalName'),
+                principal_phone: formData.get('principalPhone'),
+                principal_email: formData.get('principalEmail'),
+                contact_person: formData.get('contactPerson') || 'Not provided',
+                internet_access: formData.get('internetAccess'),
+                device_access: formData.get('deviceAccess'),
+                challenges: challenges.length > 0 ? challenges.join(', ') : 'None specified',
+                expectations: formData.get('expectations') || 'Not provided',
+                registration_date: new Date().toLocaleString(),
+                agreement: formData.get('agreement') ? 'Yes' : 'No',
+                newsletter: formData.get('newsletter') ? 'Yes' : 'No',
+                // Formatted message for email body
+                message: `
+NEW LEARNBRIDGE REGISTRATION\n
+🏫 SCHOOL INFORMATION:
+School Name: ${formData.get('schoolName')}
+School Type: ${formData.get('schoolType')}
+Location: ${formData.get('location')}
+Student Count: ${formData.get('studentCount')}
+
+👨‍🎓 PRINCIPAL/ADMINISTRATOR:
+Name: ${formData.get('principalName')}
+Phone: ${formData.get('principalPhone')}
+Email: ${formData.get('principalEmail')}
+Alt Contact: ${formData.get('contactPerson') || 'Not provided'}
+
+💻 TECHNOLOGY INFRASTRUCTURE:
+Internet Access: ${formData.get('internetAccess')}
+Device Access: ${formData.get('deviceAccess')}
+
+📊 CHALLENGES & EXPECTATIONS:
+Challenges: ${challenges.length > 0 ? challenges.join(', ') : 'None specified'}
+Expectations: ${formData.get('expectations') || 'Not provided'}
+
+✅ REGISTRATION DETAILS:
+Date: ${new Date().toLocaleString()}
+Agreement: ${formData.get('agreement') ? 'Accepted' : 'Not accepted'}
+Newsletter: ${formData.get('newsletter') ? 'Yes' : 'No'}
+
+Please contact this school within 48 hours to proceed with the LearnBridge pilot program.
+                `
+            };
+        }
+
+        // Form submission handling
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading animation
+            document.querySelector('.submit-btn').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+            
+            // Get form data
+            const formData = new FormData(this);
+            const emailData = formatEmailContent(formData);
+            
+            // Send email using EmailJS
+            emailjs.send(
+                'YOUR_SERVICE_ID',    // Replace with your EmailJS service ID
+                'YOUR_TEMPLATE_ID',   // Replace with your EmailJS template ID
+                emailData
+            )
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                document.getElementById('loading').innerHTML = `
+                    <div style="text-align: center; color: #4CAF50;">
+                        <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h3>Registration Successful!</h3>
+                        <p>Thank you for registering ${emailData.school_name}. We will contact you within 48 hours with next steps.</p>
+                        <p style="font-size: 0.9rem; color: #666; margin-top: 15px;">Confirmation sent to: ${emailData.principal_email}</p>
+                    </div>
+                `;
+            })
+            .catch(function(error) {
+                console.log('FAILED...', error);
+                document.getElementById('loading').innerHTML = `
+                    <div style="text-align: center; color: #e74c3c;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <h3>Submission Failed</h3>
+                        <p>There was an error processing your registration. Please try again or contact us directly.</p>
+                        <button onclick="location.reload()" style="background: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;">Try Again</button>
+                    </div>
+                `;
+            });
+        });
+
+        // Phone number formatting
+        document.getElementById('principalPhone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) {
+                value = value.substring(0, 11);
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
+ 
